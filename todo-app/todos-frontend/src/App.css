@@ -1,0 +1,36 @@
+/** @format */
+
+body,
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    text-align: center;
+    background: #222623;
+    width: 100vw;
+    height: 100vh;
+}
+
+.tableData {
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh;
+    align-items: center;
+    background: #232826;
+    color: white;
+    padding: 10px;
+}
+.task {
+    margin: 0.5vw;
+}
+.createdAt {
+    margin: 0.5vw;
+}
+.delete {
+    margin: 0.5vw;
+}
