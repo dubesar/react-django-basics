@@ -3,20 +3,20 @@ import {useState, useEffect} from 'react'
 import axios from 'axios';
 import Create from "./components/create"
 import { Formik } from "formik"
+import { useDispatch } from 'react-redux';
+import { getTasks } from "./features/tasks/taskSlice"
+
 
 function App() {
 
   const [data, setData] = useState( [] );
+  const dispatch = useDispatch()
 
   useEffect( () => {
-    axios.get( "http://127.0.0.1:8000/todo/" )
-      .then( ( res ) => {
-        setData(res.data)
-      } )
-      .catch( ( err ) => {
-        console.log( err );
-      })
-  }, [] )
+    dispatch( getTasks() ).then( ( res ) => {
+      setData( res.payload );
+    })
+  }, [dispatch] )
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ function App() {
         <div className = "tableData">
           <div className="task">{datas.task}</div>
           <div className="createdAt">{datas.created}</div>
-          <div class = "delete">
+          <div className = "delete">
             <Formik
               onSubmit={() => {
                 axios.delete( `http://127.0.0.1:8000/todo/${ datas.id }/` )
